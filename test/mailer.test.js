@@ -261,28 +261,6 @@ describe('Mailer', function () {
 
       });
 
-      describe('.render', function () {
-
-        var renderOptions = {
-              to: 'TestUser@localhost',
-              subject: 'Test Subject',
-              testProperty: 'testProperty'
-            };
-
-        it('should be a function', function (done) {
-          app.mailer.render.should.be.a('function');
-          done();
-        });
-
-        it('should callback with the message', function (done) {
-          app.mailer.render('template', renderOptions, function (err, message) {
-            message.should.equal(fakeMessage);
-            done();
-          });
-        });
-
-      });
-
     });
 
     describe('middleware res.mailer', function () {
@@ -403,23 +381,6 @@ describe('Mailer', function () {
           fakeRes.mailer.send('template', locals, function (err) {
             err.should.exist;
             done();
-          });
-        });
-
-      });
-
-      describe('res.mailer.render', function () {
-
-        it('should be a function', function (done) {
-          fakeRes.mailer.render.should.be.a('function');
-          done();
-        });
-
-        it('should call res.render with template and options', function (done) {
-          fakeRes.mailer.render('template', locals, function (err) {
-            fakeRes.render.calledOnce.should.be.true;
-            fakeRes.render.calledWith('template', locals).should.be.true;
-            done(err);
           });
         });
 

@@ -53,27 +53,6 @@ describe('Mailer', function () {
     });
   })
 
-  describe('GET /render-mail', function () {
-
-    it('should render the email', function (done) {
-
-      mailbox.once('newMail', function (mail) {
-        mail.html.should.include('<title>Test Email</title>');
-        done();
-      });
-      request
-        .get(baseURL + '/render-mail')
-        .end(function (err, res) {
-          if (err) {
-            return done(err);
-          };
-          // res.text.should.include('Subject: Test Email');
-          // done();
-        });
-    });
-
-  });
-
   describe('POST /send-mail-via-app', function () {
 
     it('should send mail to me', function (done) {
